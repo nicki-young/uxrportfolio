@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>[hidden]{display:none!important}img{max-width:100%}body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="UX research portfolio of Nicki Young: case studies in mixed-methods research, data synthesis, and federal and startup product work.">
+<title>Nicki Young UX Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a field-notebook reader. Home = intro + project index; each case study opens with a "field record" (like a site record form), then reads as a single 65ch column with full-width figures. */
+:root{
+  --bg:#F4F7F6; --surface:#FFFFFF; --fg:#13222B; --muted:#55666E; --line:#CFDAD8;
+  --accent:#0D6B66; --accent-soft:#E1EFED; --placeholder:#EEF3F2;
+  --display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+  --body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1618; --surface:#152124; --fg:#E2EBE9; --muted:#9AAEAD; --line:#2A3B3E;
+  --accent:#5CC4B8; --accent-soft:#163331; --placeholder:#132023; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1618; --surface:#152124; --fg:#E2EBE9; --muted:#9AAEAD; --line:#2A3B3E;
+  --accent:#5CC4B8; --accent-soft:#163331; --placeholder:#132023; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;margin:0}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+h1,h2,h3{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
+p{margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:10;background:var(--bg)}
+header.site{position:sticky;top:env(safe-area-inset-top, 0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:700;font-size:19px;color:var(--fg);text-decoration:none}
+nav.site{display:flex;gap:18px;flex-wrap:wrap}
+nav.site a{font-size:15px;color:var(--muted);text-decoration:none}
+nav.site a[aria-current="page"]{color:var(--fg);text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px}
+
+main{padding-block:48px 80px}
+
+/* home */
+.hero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:48px;align-items:start;position:relative}
+.hero h1{font-size:clamp(40px,7vw,72px);font-weight:700;letter-spacing:-.02em}
+.hero .role{font-family:var(--display);font-weight:500;font-size:clamp(20px,2.6vw,26px);color:var(--accent);margin-top:10px}
+.bio{display:grid;gap:14px;max-width:62ch;margin:28px 0 0;padding-left:20px}
+.bio li::marker{color:var(--accent)}
+.bio strong{font-weight:700}
+.headshot{aspect-ratio:4/5;max-width:100%;width:100%;border:1.5px dashed var(--line);border-radius:6px;background:var(--placeholder);display:grid;place-items:center;text-align:center;padding:20px;position:relative;overflow:hidden}
+.headshot svg{position:absolute;inset:0;width:100%;height:100%}
+.headshot.photo{display:block;padding:0;border:0;object-fit:cover;height:auto;background:var(--placeholder)}
+.headshot span{position:relative;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.contact{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.chip{font-family:var(--mono);font-size:13px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:var(--surface)}
+.chip.email{display:inline-flex;align-items:center;gap:10px;color:var(--fg);user-select:all}
+.chip.email span{user-select:all}
+.copy{font:500 12px var(--mono);color:var(--accent);background:transparent;border:0;padding:0;cursor:pointer;user-select:none}
+a.chip.link{color:var(--accent);text-decoration:none}
+a.chip.link:hover{border-color:var(--accent)}
+.chip.todo{border-style:dashed}
+
+.strengths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:72px;padding-top:32px;border-top:1px solid var(--line)}
+.strengths h3{font-size:20px;margin:8px 0 8px}
+.strengths p{color:var(--muted);font-size:16px}
+
+.index-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:72px;margin-bottom:8px;flex-wrap:wrap}
+.index-head h2{font-size:30px}
+.projects{list-style:none;margin:0;padding:0;border-top:1px solid var(--fg)}
+.projects li{border-bottom:1px solid var(--line)}
+.projects a{display:grid;grid-template-columns:120px minmax(0,1fr) 170px;gap:24px;padding-block:26px;text-decoration:none;color:var(--fg);align-items:baseline}
+.projects a:hover h3{color:var(--accent)}
+.projects h3{font-size:26px;transition:color .15s}
+.projects .sum{color:var(--muted);margin-top:6px;max-width:58ch;font-size:16px}
+.projects .meta{text-align:right;display:grid;gap:4px}
+.projects .stat{font-family:var(--mono);font-size:13px;color:var(--accent)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tag{font-family:var(--mono);font-size:11.5px;padding:3px 8px;background:var(--accent-soft);color:var(--fg);border-radius:3px}
+
+.tools{margin-top:56px;display:grid;grid-template-columns:120px minmax(0,1fr);gap:24px}
+.tools p{max-width:65ch}
+
+/* case study */
+.back{font-family:var(--mono);font-size:13px;text-decoration:none;color:var(--muted)}
+.cs-head{margin-top:20px;max-width:860px}
+.cs-head h1{font-size:clamp(36px,6vw,60px);letter-spacing:-.02em}
+.cs-head .lede{font-size:20px;margin-top:16px;max-width:60ch}
+.record{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:36px 0 0;border:1px solid var(--line);background:var(--surface);border-radius:4px}
+.record div{padding:14px 16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-width:0}
+.record div:nth-child(4n){border-right:none}
+.record dt{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.record dd{margin:4px 0 0;font-size:15px;line-height:1.45}
+.record .wide{grid-column:span 2}
+.record .full{grid-column:1/-1;border-right:none}
+.record div:last-child{border-bottom:none}
+
+.cs-body{display:grid;gap:56px;margin-top:56px}
+.cs-section{display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px}
+.cs-section > h2{font-size:22px;position:sticky;top:calc(env(safe-area-inset-top, 0px) + 80px);align-self:start}
+.prose{display:grid;gap:18px;max-width:65ch;min-width:0}
+.prose h3{font-size:19px;margin-top:10px}
+.prose ul,.prose ol{margin:0;padding-left:22px;display:grid;gap:6px}
+.prose blockquote{margin:0;padding:4px 0 4px 18px;border-left:2px solid var(--accent);font-style:italic;color:var(--muted)}
+.callout{background:var(--accent-soft);padding:18px 20px;border-radius:4px;display:grid;gap:8px}
+.callout .label{color:var(--accent)}
+.numbers{display:flex;flex-wrap:wrap;gap:28px}
+.numbers div{display:grid}
+.numbers b{font-family:var(--display);font-size:34px;line-height:1;font-variant-numeric:tabular-nums}
+.numbers span{font-size:14px;color:var(--muted);margin-top:6px;max-width:16ch}
+
+figure{margin:0;display:grid;gap:10px;min-width:0}
+.ph{aspect-ratio:16/10;max-width:100%;width:100%;border:1.5px dashed var(--line);border-radius:4px;background:var(--placeholder);display:grid;place-items:center;text-align:center;padding:16px}
+.ph span{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.ph.tall{aspect-ratio:4/5}
+.zoom{all:unset;display:block;cursor:zoom-in;border-radius:4px}
+.zoom:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.shot{display:block;width:100%;height:auto;max-width:100%;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
+.lightbox{position:fixed;inset:0;z-index:20;background:rgba(8,14,16,.88);display:grid;place-items:center;padding:max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));cursor:zoom-out}
+.lightbox img{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;background:#fff}
+.lightbox button{position:absolute;top:calc(env(safe-area-inset-top, 0px) + 14px);right:calc(env(safe-area-inset-right, 0px) + 14px);font:600 14px var(--body);color:#fff;background:transparent;border:1px solid rgba(255,255,255,.5);border-radius:999px;padding:6px 14px;cursor:pointer}
+figcaption{font-size:14px;color:var(--muted)}
+figcaption b{font-family:var(--mono);font-weight:500;color:var(--fg);font-size:12.5px;letter-spacing:.04em;margin-right:6px}
+.fig-stack{display:grid;gap:20px}
+.fig-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+
+.next{margin-top:80px;padding-top:28px;border-top:1px solid var(--fg);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline}
+.next a{font-family:var(--display);font-size:26px;font-weight:700;text-decoration:none}
+
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-block:24px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;gap:32px}
+  .headshot{max-width:260px}
+  .strengths{grid-template-columns:1fr;gap:24px}
+  .projects a{grid-template-columns:1fr;gap:6px}
+  .projects .meta{text-align:left;order:-1;display:flex;gap:12px;flex-wrap:wrap}
+  .tools{grid-template-columns:1fr;gap:8px}
+  .record{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .record div:nth-child(4n){border-right:1px solid var(--line)}
+  .record div:nth-child(2n){border-right:none}
+  .record .wide,.record .full{grid-column:1/-1;border-right:none}
+  .cs-section{grid-template-columns:1fr;gap:14px}
+  .cs-section > h2{position:static}
+  .fig-pair{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#home">Nicki Young</a>
+    <nav class="site" aria-label="Case studies">
+      <a href="#home">Work</a>
+      <a href="#ocn">OCN</a>
+      <a href="#food-distro">Food Distro</a>
+      <a href="#dax">DAX</a>
+      <a href="#gjep">GJEP</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ================= HOME ================= -->
+<section data-view="home">
+  <div class="hero">
+    <div>
+      <p class="label">Portfolio · 2023–2024</p>
+      <h1 style="margin-top:14px">Nicki Young</h1>
+      <p class="role">UX Researcher</p>
+      <ul class="bio">
+        <li><strong>UX researcher trained in anthropology.</strong> I study how people make decisions, then turn what I learn into product direction.</li>
+        <li><strong>In UX research since 2023.</strong> I've led research for startups and nonprofits, including an ocean-health platform built with government partners.</li>
+        <li><strong>One throughline: understanding people in context.</strong> From ethnographic fieldwork to disaster recovery, I've always studied what people need and used that evidence to guide decisions. UX research applies that practice to products.</li>
+        <li><strong>At home in complex, regulated settings.</strong> Federal disaster-recovery research has taught me to translate dense rules into guidance stakeholders can act on.</li>
+        <li><strong>Anthropology and GIS training.</strong> M.A. in Anthropology and Graduate Certificate in GIS from the University of Central Florida, with hands-on GIS and spatial analysis experience across research and federal work.</li>
+      </ul>
+      <div class="contact">
+        <span class="chip email"><span id="email-text">niccyoung@proton.me</span><button type="button" class="copy" id="copy-email" aria-label="Copy email address">Copy</button></span>
+        <a class="chip link" href="https://www.linkedin.com/in/nickidyoung/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="chip link" href="files/Nicki-Young-UX-Research-Resume.pdf" target="_blank" rel="noopener">Resume (PDF) ↗</a>
+      </div>
+    </div>
+    <img class="headshot photo" src="figs/headshot.jpg" alt="Portrait of Nicki Young" width="720" height="900">
+  </div>
+
+  <div class="strengths">
+    <div>
+      <p class="label">Mixed methods</p>
+      <h3>Numbers and stories, together</h3>
+      <p>User surveys, semi-structured interviews, card sorts, competitive analysis, and large-scale text analysis of scraped reviews.</p>
+    </div>
+    <div>
+      <p class="label">Data synthesis</p>
+      <h3>One clear story from many sources</h3>
+      <p>I bring together qualitative insights, quantitative results, and specialized data such as spatial and mapping data, and turn them into a unified, evidence-based recommendation.</p>
+    </div>
+    <div>
+      <p class="label">Facilitation and documentation</p>
+      <h3>Findings people can use</h3>
+      <p>Co-creation and sketching workshops with clients and teams, plus SOPs, report templates, and research guides built for a federal agency.</p>
+    </div>
+  </div>
+
+  <div class="index-head">
+    <h2>Case studies</h2>
+    <p class="label">4 projects</p>
+  </div>
+  <ul class="projects">
+    <li><a href="#ocn">
+      <span class="label">Dec 2023 – Aug 2024</span>
+      <div>
+        <h3>OCN</h3>
+        <p class="sum">Mapping research, flows, and wireframes for an AI-powered ocean-health dashboard, from MVP strategy to an investor demo.</p>
+        <div class="tags"><span class="tag">Market research</span><span class="tag">Task &amp; user flows</span><span class="tag">Spatial research</span><span class="tag">Wireframing</span></div>
+      </div>
+      <span class="meta"><span class="label">UX Researcher</span><span class="stat">Demo in 2 weeks, not 4</span></span>
+    </a></li>
+    <li><a href="#food-distro">
+      <span class="label">Feb – Apr 2023</span>
+      <div>
+        <h3>Food Distro</h3>
+        <p class="sum">End-to-end research for a neighbor-to-neighbor food-sharing app: who it serves, which business model, and how it should be organized.</p>
+        <div class="tags"><span class="tag">SWOT</span><span class="tag">Survey</span><span class="tag">Interviews</span><span class="tag">Personas</span><span class="tag">Card sort</span></div>
+      </div>
+      <span class="meta"><span class="label">UX Researcher</span><span class="stat">138 survey responses</span></span>
+    </a></li>
+    <li><a href="#dax">
+      <span class="label">May – Aug 2023</span>
+      <div>
+        <h3>DAX Dashboard</h3>
+        <p class="sum">A data scrape and survey that defined the metrics behind a restaurant-review dashboard, then wireframes built from them.</p>
+        <div class="tags"><span class="tag">Data scrape</span><span class="tag">Text analysis</span><span class="tag">Survey</span><span class="tag">Wireframing</span></div>
+      </div>
+      <span class="meta"><span class="label">UX Researcher</span><span class="stat">50,000+ reviews analyzed</span></span>
+    </a></li>
+    <li><a href="#gjep">
+      <span class="label">Apr – Aug 2024</span>
+      <div>
+        <h3>Global Justice Ecology Project</h3>
+        <p class="sum">Content audit, user-tested mission and value statements, and new page copy for a nonprofit's website redesign.</p>
+        <div class="tags"><span class="tag">Content audit</span><span class="tag">Message testing</span><span class="tag">Workshops</span><span class="tag">Copywriting</span></div>
+      </div>
+      <span class="meta"><span class="label">UX Writer</span><span class="stat">2 rounds of message testing</span></span>
+    </a></li>
+  </ul>
+
+  <div class="tools">
+    <p class="label">Tools</p>
+    <p>Claude · Gemini · Dovetail · UserTesting · Google Analytics · Qualtrics · Optimal Workshop · Figma · Miro · Moqups · Octoparse · Voyant Tools · Esri ArcGIS</p>
+  </div>
+</section>
+
+<!-- ================= OCN ================= -->
+<article data-view="ocn" hidden>
+  <a class="back" href="#home">← All work</a>
+  <div class="cs-head">
+    <p class="label" style="margin-top:20px">Case study · Ocean data platform</p>
+    <h1 style="margin-top:10px">OCN</h1>
+    <p class="lede">OCN uses mapping, buoy-mounted sensors, and AI to track and forecast ocean health. I helped define who the MVP was for, shaped the site's information architecture, and owned the map.</p>
+  </div>
+  <dl class="record">
+    <div><dt>Role</dt><dd>UX Researcher</dd></div>
+    <div><dt>Timeline</dt><dd>Dec 2023 – Aug 2024 (Phase III)</dd></div>
+    <div class="wide"><dt>How I joined</dt><dd>Applied directly to OCN's VP of Strategy when the team was looking for researchers</dd></div>
+    <div class="wide"><dt>Team</dt><dd>2 UX researchers, 2 UX designers, CEO and VP of Strategy</dd></div>
+    <div class="wide"><dt>Tools</dt><dd>Moqups, Figma</dd></div>
+    <div class="full"><dt>Methods</dt><dd>Market research · HMW analysis · Journey maps · Task flows · Spatial aggregation research · Storyboarding workshops · Lo- and mid-fi wireframing · Usability testing</dd></div>
+  </dl>
+
+  <div class="cs-body">
+    <section class="cs-section">
+      <h2>Context</h2>
+      <div class="prose">
+        <p>OCN aims to unite the world's ocean data and make collecting it practical. When I joined, it had no way to display that data. Our team of four was brought on to launch the MVP, with three goals:</p>
+        <ol>
+          <li>Find user pain points and business opportunities in the ocean-mapping market.</li>
+          <li>Build a product demo for investor meetings.</li>
+          <li>Work with Design on an accessible, AI-assisted mapping dashboard, and test it with users.</li>
+        </ol>
+        <figure><button class="zoom" type="button" aria-label="Enlarge figure 1"><img class="shot" src="figs/ocn-1.jpg" alt="OCN marketing banner: Monitoring the ocean for a healthier world" loading="lazy"></button><figcaption><b>FIG 1</b>What OCN does.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2>Strategy and flows</h2>
+      <div class="prose">
+        <p>Discovery was mostly done, but the team was stuck on how to show data on the map, chart ocean metrics, and organize pages. While my colleague built Jobs-to-be-Done personas, I led the mapping research. Drawing on my GIS expertise and other platforms, I answered all 21 How-Might-We statements from earlier phases and narrowed the work to three problems to solve before launch:</p>
+        <ul>
+          <li>Scaling complexity up or down for different users</li>
+          <li>Layering multiple data sets cohesively</li>
+          <li>Comparing elements over time</li>
+        </ul>
+        <p>I mapped task flows for every Required MVP feature (such as saved searches, switching from Map View to Data Analysis, and viewing data over time) and a journey map for each persona, tracing their path through the dashboard to the information they need, like monitoring areas of concern or finding healthy areas to invest in.</p>
+        <div class="fig-pair">
+          <figure><button class="zoom" type="button" aria-label="Enlarge figure 2"><img class="shot" src="figs/ocn-2.png" alt="Blurred user flow diagram with blue and green steps" loading="lazy"></button><figcaption><b>FIG 2</b>User flows by user role (blurred for privacy).</figcaption></figure>
+          <figure><button class="zoom" type="button" aria-label="Enlarge figure 3"><img class="shot" src="figs/ocn-3.png" alt="Blurred task flow diagram with red, orange, and yellow steps" loading="lazy"></button><figcaption><b>FIG 3</b>Task flows for MVP requirements (blurred for privacy).</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2>Mapping research</h2>
+      <div class="prose">
+        <p>The team kept stalling on what spatial unit to aggregate ocean data to. I found there was no universal standard, identified four models OCN could follow, and presented them in a research report.</p>
+        <div class="callout">
+          <p class="label">Recommendation</p>
+          <p>Match the standard of the satellite imagery OCN is likely to use. It integrates seamlessly and scales up to remote areas that need less detail.</p>
+        </div>
+        <figure><button class="zoom" type="button" aria-label="Enlarge figure 4"><img class="shot" src="figs/ocn-4.jpg" alt="Presentation title slide: Identifying a Standard Unit of Measure to Aggregate Map Data, presented by Nicki Young" loading="lazy"></button><figcaption><b>FIG 4</b>Title slide from my research presentation.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2>Investor demo</h2>
+      <div class="prose">
+        <p>Mid-sprint, the CEO asked for a demo for upcoming investor meetings. We storyboarded, sketched, and voted on screens; I then led wireframing in Moqups, iterating twice before handing off to the designers.</p>
+        <div class="numbers">
+          <div><b>2 weeks</b><span>to finish the demo, instead of the planned 4</span></div>
+        </div>
+        <p>I also worked on the map display and a chart with one designer, and designed the map icons from the OCN logo. We treated the CEO's first meeting as a usability test, then improved navigation back to the dashboard, the AI chatbot flow, and several charts. Remaining gaps: Figma's small touch targets during live demos, objects left unclickable to save time, and validation with more users, which we addressed in the next phase.</p>
+        <figure><button class="zoom" type="button" aria-label="Enlarge figure 5"><img class="shot" src="figs/ocn-5.png" alt="Grayscale homepage wireframe with map, navigation cards, What's New feed, and metric chart" loading="lazy"></button><figcaption><b>FIG 5</b>Homepage, mid-fi wireframe.</figcaption></figure>
+        <div class="fig-pair">
+          <figure><button class="zoom" type="button" aria-label="Enlarge figure 6"><img class="shot" src="figs/ocn-6.png" alt="Grayscale My Projects wireframe listing projects with priority tags, map thumbnails, pinned locations, and an ocean health chart" loading="lazy"></button><figcaption><b>FIG 6</b>My Projects, mid-fi wireframe.</figcaption></figure>
+          <figure><button class="zoom" type="button" aria-label="Enlarge figure 7"><img class="shot" src="figs/ocn-7.jpg" alt="Mapping dashboard wireframe with satellite map of the British Virgin Islands, sensor markers, overall ocean risk score of 78, element trends, and notifications" loading="lazy"></button><figcaption><b>FIG 7</b>Mapping dashboard, mid-fi wireframe.</figcaption></figure>
+        </div>
+        <figure><button class="zoom" type="button" aria-label="Enlarge figure 8"><img class="shot" src="figs/ocn-8.jpg" alt="Four dark-theme dashboard screens from the product demo showing map, risk score gauge, ocean risk trend, and water health breakdown" loading="lazy"></button><figcaption><b>FIG 8</b>Product demo.</figcaption></figure>
+        <figure><button class="zoom" type="button" aria-label="Enlarge figure 9"><img class="shot" src="figs/ocn-9.jpg" alt="Sensor icon states: default, hover, and activated, with descriptions of each" loading="lazy"></button><figcaption><b>FIG 9</b>Map sensor icons I designed from the OCN logo.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2>Developing the MVP</h2>
+      <div class="prose">
+        <p>I took the Zone Details page from lo-fi toward hi-fi. It covers a location's zones, zone health, conditions like salinity, turbidity, acidity, and temperature, and trends. Each version responded to feedback from the designers and a VP, and some cut components came back later. Some information is redacted for privacy.</p>
+        <p>Once the designs reached hi-fi, we ran limited user testing on the dashboard. It caught bugs before launch and gave us clear direction for the next iteration.</p>
+        <div class="fig-pair">
+          <figure><button class="zoom" type="button" aria-label="Enlarge figure 10"><img class="shot" src="figs/ocn-10.jpg" alt="Hand-drawn Zone Details sketch with island map, overall risk, four zone cards, trend, and predictions" loading="lazy"></button><figcaption><b>FIG 10</b>One of the earliest iterations.</figcaption></figure>
+          <figure><button class="zoom" type="button" aria-label="Enlarge figure 11"><img class="shot" src="figs/ocn-11.jpg" alt="Hand-drawn Zone Details iteration with color-coded zones on a map, zone cards, trend chart, and predictions" loading="lazy"></button><figcaption><b>FIG 11</b>Another early iteration.</figcaption></figure>
+          <figure><button class="zoom" type="button" aria-label="Enlarge figure 12"><img class="shot" src="figs/ocn-12.jpg" alt="Zone overview wireframe with zones outlined on a real map, zone risk cards, elements overview, and risk trend" loading="lazy"></button><figcaption><b>FIG 12</b>A later iteration after several critiques.</figcaption></figure>
+          <figure><button class="zoom" type="button" aria-label="Enlarge figure 13"><img class="shot" src="figs/ocn-13.jpg" alt="Zone overview mid-fi with zone map, zone cards, salinity panel, risk trend, and an annotated legend pop-up" loading="lazy"></button><figcaption><b>FIG 13</b>Mid-fi handed to the designers for hi-fi.</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2>Takeaways</h2>
+      <div class="prose">
+        <ul>
+          <li><strong>I shaped the dashboard’s strategy, not just its screens.</strong> Resolving the 21 open questions, defining the three problems to solve before launch, and recommending the spatial data standard gave the team a clear direction for the MVP.</li>
+          <li>I worked as strategist, researcher, and lo-fi designer, and layering those roles made the product stronger.</li>
+          <li>I became the team's expert on mapping and the science, learning what I didn't know by knowing where to look.</li>
+          <li>Our user groups shifted as scope changed, and we couldn't test every iteration, so we used live products for early validation and saved user testing for the hi-fi designs.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+  <div class="next"><span class="label">Next case study</span><a href="#food-distro">Food Distro →</a></div>
+</article>
+
+<!-- ================= FOOD DISTRO ================= -->
+<article data-view="food-distro" hidden>
+  <a class="back" href="#home">← All work</a>
+  <div class="cs-head">
+    <p class="label" style="margin-top:20px">Case study · Community food sharing</p>
+    <h1 style="margin-top:10px">Food Distro</h1>
+    <p class="lede">A mobile app for sharing surplus food with neighbors. Our research settled who it was for, which business model to follow, and how it should be organized.</p>
+  </div>
+  <dl class="record">
+    <div><dt>Role</dt><dd>UX Researcher</dd></div>
+    <div><dt>Timeline</dt><dd>Feb – Apr 2023 (Phase I)</dd></div>
+    <div class="wide"><dt>How I joined</dt><dd>Client project through Tech Fleet</dd></div>
+    <div class="wide"><dt>Deliverables</dt><dd>Affinity maps, data visuals, personas, IA site map, hi-fi clickable prototype (MVP)</dd></div>
+    <div class="wide"><dt>Tools</dt><dd>Userbit, Optimal Workshop</dd></div>
+    <div class="full"><dt>Methods</dt><dd>Competitive analysis · SWOT · Survey (174 started, 138 completed) · 7 semi-structured interviews · Inductive coding · Affinity mapping · Personas · Card sort</dd></div>
+  </dl>
+
+  <div class="cs-body">
+    <section class="cs-section">
+      <h2>Context</h2>
+      <div class="prose">
+        <p>Through Tech Fleet, a community that pairs people breaking into tech with real projects, client Katia S. brought an idea: connect people with neighbors and local stores that have surplus food.</p>
+        <blockquote>"Why not share it with someone who is in need — like a new mother who doesn't have time to make any food or your elderly neighbor who struggles to make ends meet?"</blockquote>
+        <p>The challenge was making sharing easy for givers while giving receivers confidence in the food's quality and hygiene. We set out to identify target users and their motivations and barriers, size up competitors, and find patterns to guide the design.</p>
+        <figure><button class="zoom" type="button" aria-label="Enlarge figure 1"><img class="shot" src="figs/fd-1.jpg" alt="Brainstorm board grouping research questions into five areas: education and awareness, value alignment, user needs, quality and comfort, and usability and usage" loading="lazy"></button><figcaption><b>FIG 1</b>Brainstorm to decide what the research needed to cover.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2>Competitive analysis</h2>
+      <div class="prose">
+        <p>We compared Olio, Buy Nothing, Nextdoor, and Too Good To Go, then used a SWOT analysis to choose a model. Business-to-consumer (B2C) would need community infrastructure and likely payments; consumer-to-consumer (C2C) was more flexible with lighter quality control. The team chose C2C.</p>
+        <figure><button class="zoom" type="button" aria-label="Enlarge figure 2"><img class="shot" src="figs/fd-2.jpg" alt="Consumer-to-consumer SWOT analysis board comparing Olio, Nextdoor, and Buy Nothing, with key points in each quadrant" loading="lazy"></button><figcaption><b>FIG 2</b>Consumer-to-consumer (C2C) SWOT analysis.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2>Survey</h2>
+      <div class="prose">
+        <p>A 14-day survey of 20 to 30 questions covered needs, usage, awareness, values, comfort with donated goods, and demographics.</p>
+        <div class="numbers">
+          <div><b>174</b><span>started the survey</span></div>
+          <div><b>138</b><span>completed it</span></div>
+          <div><b>~45%</b><span>had used a food-sharing platform</span></div>
+        </div>
+        <p>People aged 18–50 had the most platform experience, which fell with age, but past use didn't predict whether someone shared food. We focused the app on ages 18–50.</p>
+        <figure><button class="zoom" type="button" aria-label="Enlarge figure 3"><img class="shot" src="figs/fd-3.png" alt="Table of survey demographics: household size, age, and annual household income with counts and percentages" loading="lazy"></button><figcaption><b>FIG 3</b>Survey participant demographics. Totals vary by question because not every question was required.</figcaption></figure>
+        <div class="fig-pair">
+          <figure><button class="zoom" type="button" aria-label="Enlarge figure 4"><img class="shot" src="figs/fd-4.png" alt="Bar chart of barriers to reducing food waste; lack of convenient options leads with 64 respondents" loading="lazy"></button><figcaption><b>FIG 4</b>Barriers to reducing food waste (number of respondents).</figcaption></figure>
+          <figure><button class="zoom" type="button" aria-label="Enlarge figure 5"><img class="shot" src="figs/fd-5.png" alt="Bar chart of barriers to using food-sharing platforms; safety or quality concerns (27) and distance from pickup (26) lead" loading="lazy"></button><figcaption><b>FIG 5</b>Barriers to using food-sharing platforms (number of respondents).</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2>Interviews</h2>
+      <div class="prose">
+        <p>I wrote the discussion guide and led seven semi-structured interviews over two weeks with a mix of experienced and first-time users. I coded the transcripts inductively in Userbit; a second researcher coded them independently to reduce bias, and we merged codes and affinity mapped the results.</p>
+        <div class="callout">
+          <p class="label">What we learned</p>
+          <p>Sustainability and community drove use. Coordination was the biggest pain point, easy pickup mattered most to receivers, and people felt a stigma around free or discounted food.</p>
+        </div>
+        <p>These findings echoed the survey, where concerns about the safety or quality of donated food (27 respondents) and distance from pickup (26) were the top barriers to using food-sharing platforms.</p>
+        <div class="fig-pair">
+          <figure><button class="zoom" type="button" aria-label="Enlarge figure 6"><img class="shot" src="figs/fd-6.jpg" alt="Affinity map cluster showing sustainability as a driver, with participant quotes and a recommendation" loading="lazy"></button><figcaption><b>FIG 6</b>Affinity map: sustainability as a driver, with a recommendation to show users how much food they’ve kept out of landfills.</figcaption></figure>
+          <figure><button class="zoom" type="button" aria-label="Enlarge figure 7"><img class="shot" src="figs/fd-7.jpg" alt="Affinity map cluster showing stigma around receiving free food, with participant quotes and recommendations" loading="lazy"></button><figcaption><b>FIG 7</b>Affinity map: stigma around receiving free food, with recommendations to reduce it.</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2>Personas and IA</h2>
+      <div class="prose">
+        <p>Research, Design, and Strategy built Giver and Taker personas from the survey, interviews, and Strategy's Jobs-to-be-Done analysis, which also sharpened our problem statement. In the final sprint, a remote closed card sort in Optimal Workshop (29 cards from the wireframes) helped us build a user-centered information architecture.</p>
+        <div class="fig-stack">
+          <figure><button class="zoom" type="button" aria-label="Enlarge figure 8"><img class="shot" src="figs/fd-8.jpg" alt="Taker persona: Polo, 28, Tulsa, a young professional motivated by sustainability, with needs, goals, and pain points" loading="lazy"></button><figcaption><b>FIG 8</b>Taker persona.</figcaption></figure>
+          <figure><button class="zoom" type="button" aria-label="Enlarge figure 9"><img class="shot" src="figs/fd-9.jpg" alt="Giver persona: Anita, 35, Phoenix, a mother of two who wants an easy way to share extra food, with needs, goals, and pain points" loading="lazy"></button><figcaption><b>FIG 9</b>Giver persona.</figcaption></figure>
+        </div>
+        <figure><button class="zoom" type="button" aria-label="Enlarge figure 10"><img class="shot" src="figs/fd-10.png" alt="Site map with Home branching into Account Profile, Messaging, Search, Add Listing, and Educational Content" loading="lazy"></button><figcaption><b>FIG 10</b>Site map built from the card sort.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2>Impact</h2>
+      <div class="prose">
+        <ul>
+          <li><strong>Answered the open questions:</strong> B2C or C2C, who the users are, and whether to share food, goods, or both.</li>
+          <li><strong>Advocated for users:</strong> research led to stronger safety features and put community first.</li>
+          <li><strong>Shaped design and strategy:</strong> findings set features, voice, and messaging instead of assumptions.</li>
+        </ul>
+        <p>The team presented the final demo to the client, stakeholders, and the Tech Fleet community.</p>
+        <figure><button class="zoom" type="button" aria-label="Enlarge figure 11"><img class="shot" src="figs/fd-11.jpg" alt="Mid-fi and hi-fi mobile screens for browsing nearby food and viewing a listing for carrots" loading="lazy"></button><figcaption><b>FIG 11</b>Mid-fi to hi-fi prototype screens by the Design team.</figcaption></figure>
+      </div>
+    </section>
+  </div>
+  <div class="next"><span class="label">Next case study</span><a href="#dax">DAX Dashboard →</a></div>
+</article>
+
+<!-- ================= DAX ================= -->
+<article data-view="dax" hidden>
+  <a class="back" href="#home">← All work</a>
+  <div class="cs-head">
+    <p class="label" style="margin-top:20px">Case study · Restaurant reviews</p>
+    <h1 style="margin-top:10px">DAX Dashboard</h1>
+    <p class="lede">A review dashboard that helps diners choose faster. I scraped and analyzed tens of thousands of reviews, validated the findings with a survey, and turned them into the tiered metrics the dashboard is built on.</p>
+  </div>
+  <dl class="record">
+    <div><dt>Role</dt><dd>UX Researcher</dd></div>
+    <div><dt>Timeline</dt><dd>May – Aug 2023 (Phase I)</dd></div>
+    <div class="wide"><dt>How I joined</dt><dd>Applied directly to DAX's founder when they were looking for researchers</dd></div>
+    <div class="wide"><dt>Deliverables</dt><dd>Competitive analysis, data scrape, data visuals, lo- and mid-fi wireframes; hi-fi MVP prototype by the design team</dd></div>
+    <div class="wide"><dt>Tools</dt><dd>Octoparse, Excel, Voyant Tools, Figma</dd></div>
+    <div class="full"><dt>Methods</dt><dd>Competitive analysis · Web scraping · Text analysis · Survey (156 responses) · Metrics modeling · Wireframing</dd></div>
+  </dl>
+
+  <div class="cs-body">
+    <section class="cs-section">
+      <h2>Context</h2>
+      <div class="prose">
+        <p>A 2021 <a href="https://www.powerreviews.com/insights/power-of-reviews-survey-2021/" target="_blank" rel="noopener">PowerReviews survey</a> found that 99.9% of consumers read reviews at least sometimes before buying. The client wanted a restaurant platform that helps diners decide quickly and puts each restaurant's strongest stats up front. Our goals were to find diners' pain points, identify the metrics that define a good experience, and design a dashboard around them.</p>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2>Competitive analysis</h2>
+      <div class="prose">
+        <p>Each researcher covered different platforms; mine were Yelp, TripAdvisor, Foursquare, and OpenTable. None offered sophisticated filtering, and none visualized review data; a diner looking for great drink specials, for example, had no quick way to find them.</p>
+        <figure><button class="zoom" type="button" aria-label="Enlarge figure 1"><img class="shot" src="figs/dax-1.jpg" alt="Competitive analysis board comparing Yelp, TripAdvisor, Foursquare, and OpenTable on audience, platform, emphasis, value, and opportunities" loading="lazy"></button><figcaption><b>FIG 1</b>My competitive analysis of restaurant review platforms.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2>Data scrape</h2>
+      <div class="prose">
+        <p>I scraped reviews of four Houston restaurants with Octoparse and analyzed them in Voyant Tools.</p>
+        <div class="numbers">
+          <div><b>50,000+</b><span>data points scraped</span></div>
+          <div><b>10</b><span>recurring review themes</span></div>
+        </div>
+        <p>Reviews most often mentioned service, food, photos, ambiance, price, value, plate size, specials, location, and music. Three of these drive the overall rating:</p>
+        <div class="callout">
+          <p class="label">Tier I → Tier II</p>
+          <p>Average rating (Tier I) rests on <strong>Food, Service, and Value</strong> (Tier II).</p>
+        </div>
+        <figure><button class="zoom" type="button" aria-label="Enlarge figure 2"><img class="shot" src="figs/dax-2.jpg" alt="Word cloud from scraped reviews; food, service, great, and good are the largest words" loading="lazy"></button><figcaption><b>FIG 2</b>Word cloud from the data scrape.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2>Survey and metrics</h2>
+      <div class="prose">
+        <p>To validate the metrics, we surveyed diners about their dining experience, since that's what reviews describe. I designed the survey graphic and led distribution through restaurant, foodie, and travel groups on Facebook, Reddit, and Discord.</p>
+        <div class="numbers">
+          <div><b>156</b><span>responses in 10 days</span></div>
+          <div><b>84%</b><span>completion rate</span></div>
+        </div>
+        <p>We turned the results into a pyramid. Its base became Tier III metrics, the details behind each Tier II metric, which diners can toggle on the dashboard to match their needs. Ambiance was tested too, but diners ranked it below the other three, so it didn’t become a core metric.</p>
+        <div class="fig-pair">
+          <figure><button class="zoom" type="button" aria-label="Enlarge figure 3"><img class="shot" src="figs/dax-3.png" alt="Bar chart of average ranking scores for restaurant qualities, with food quality highest" loading="lazy"></button><figcaption><b>FIG 3</b>Average ranking score for each restaurant quality (higher means more important). Food quality ranked first, followed by fair prices, service, and ambiance.</figcaption></figure>
+          <figure><button class="zoom" type="button" aria-label="Enlarge figure 4"><img class="shot" src="figs/dax-4.png" alt="Bar chart of how important staff recommendations are; somewhat important leads at about 43 percent" loading="lazy"></button><figcaption><b>FIG 4</b>Service metric: how important it is that staff give good food or drink recommendations. Most respondents rated it somewhat or very important.</figcaption></figure>
+          <figure><button class="zoom" type="button" aria-label="Enlarge figure 5"><img class="shot" src="figs/dax-5.png" alt="Word cloud of open-ended ambiance answers, led by loud, smell, table, and restaurant" loading="lazy"></button><figcaption><b>FIG 5</b>Open-ended answers on ambiance: noise level, smell, seating, and music came up most.</figcaption></figure>
+          <figure><button class="zoom" type="button" aria-label="Enlarge figure 6"><img class="shot" src="figs/dax-6.png" alt="Heat-mapped table of importance ratings for food, service, ambiance, and value subtopics" loading="lazy"></button><figcaption><b>FIG 6</b>Table of survey results.</figcaption></figure>
+        </div>
+        <figure><button class="zoom" type="button" aria-label="Enlarge figure 7"><img class="shot" src="figs/dax-7.png" alt="Metrics pyramid: 5-star average at the top, Food, Service, and Value in the middle, specific subtopics below, and one person's opinion at the base" loading="lazy"></button><figcaption><b>FIG 7</b>Metrics pyramid, from general (Tier I) to granular (Tier III).</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2>Designing the dashboard</h2>
+      <div class="prose">
+        <p>I built several wireframe iterations from the survey and pyramid, then handed them and my notes to the design team. The final design shows Tier II metrics center-left with Tier III below, and lets diners filter reviews by any tier.</p>
+        <figure><button class="zoom" type="button" aria-label="Enlarge figure 8"><img class="shot" src="figs/dax-8.jpg" alt="Mid-fi restaurant dashboard wireframe with overall rating, ratings trend, food, service, and value ratings, food breakdown charts, filters, and reviews" loading="lazy"></button><figcaption><b>FIG 8</b>My mid-fi wireframe in Figma. Many of my proposed elements made the final design.</figcaption></figure>
+        <figure><button class="zoom" type="button" aria-label="Enlarge figure 9"><img class="shot" src="figs/dax-9.jpg" alt="Final MVP dashboard for a sushi restaurant with rating trend, rating distribution, food, service, and value topic scores, subtopics, and reviews" loading="lazy"></button><figcaption><b>FIG 9</b>Final MVP design by one of the designers.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2>Reflections</h2>
+      <div class="prose">
+        <p>Interviews would have added depth on how diners decide, and with more time I would have run eye-tracking tests to validate the layout.</p>
+      </div>
+    </section>
+  </div>
+  <div class="next"><span class="label">Next case study</span><a href="#gjep">Global Justice Ecology Project →</a></div>
+</article>
+
+<!-- ================= GJEP ================= -->
+<article data-view="gjep" hidden>
+  <a class="back" href="#home">← All work</a>
+  <div class="cs-head">
+    <p class="label" style="margin-top:20px">Case study · Nonprofit website</p>
+    <h1 style="margin-top:10px">Global Justice Ecology Project</h1>
+    <p class="lede">GJEP is a nonprofit that exposes the root causes of social injustice, ecological harm, and economic domination of the Global South. We redesigned its website to explain its value clearly and simplified its navigation by combining related topics.</p>
+  </div>
+  <dl class="record">
+    <div><dt>Role</dt><dd>UX Writer</dd></div>
+    <div><dt>Timeline</dt><dd>Apr – Aug 2024 (Phase II)</dd></div>
+    <div class="wide"><dt>How I joined</dt><dd>Client project through Tech Fleet</dd></div>
+    <div class="wide"><dt>Team</dt><dd>UX Writing team, working with UX Research and Design</dd></div>
+    <div class="wide"><dt>Tools</dt><dd>Figma</dd></div>
+    <div class="full"><dt>Methods</dt><dd>Content audit · Client workshops · Message testing (2 rounds) · Content design · Copywriting</dd></div>
+  </dl>
+
+  <div class="cs-body">
+    <section class="cs-section">
+      <h2>Content audit</h2>
+      <div class="prose">
+        <p>Our audit of the existing site showed where to focus, where to collaborate, and what the research team should test. It also surfaced the problem that ran through the whole phase: the client struggled to communicate its mission and value.</p>
+        <figure><button class="zoom" type="button" aria-label="Enlarge figure 1"><img class="shot" src="figs/gjep-1.jpg" alt="Content audit spreadsheet listing GJEP issue pages with URLs, media formats, CTAs, content type, and recommendations" loading="lazy"></button><figcaption><b>FIG 1</b>The section of the content audit I led.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2>Mission and value</h2>
+      <div class="prose">
+        <p>To give every team a shared voice, we ran workshops to draft several mission statements and value propositions, then tested them with users.</p>
+        <div class="callout">
+          <p class="label">After 2 rounds of testing</p>
+          <p>Users distrusted buzzy language like "global alliances" and "root causes" and wanted action words and evidence of results. We rewrote both statements to be specific, action-oriented, and grounded in GJEP's long track record.</p>
+        </div>
+        <p>The client valued that we named a problem they couldn't articulate and gave them a way to solve it.</p>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2>Content design</h2>
+      <div class="prose">
+        <p>To simplify the site's navigation, we combined related topics into single pages, such as merging Genetically Engineered Trees with Forest Protection. Each writer owned a page. Mine, Genetically Engineered Trees, had no existing copy, so I researched the issue from authoritative sources and borrowed language from other pages to keep the tone consistent. With the designers, I structured it as the issue, key accomplishments, and future work, with issue-specific calls to action at the top and bottom. A shared Figma file kept tone consistent across writers and let me work through layouts with designers in real time.</p>
+        <div class="fig-pair">
+          <figure><button class="zoom" type="button" aria-label="Enlarge figure 2"><img class="shot" src="figs/gjep-2.jpg" alt="Original GJEP Forest Protection page with a gradient banner and a grid of news posts" loading="lazy"></button><figcaption><b>FIG 2</b>Original GJEP page.</figcaption></figure>
+          <figure><button class="zoom" type="button" aria-label="Enlarge figure 3"><img class="shot" src="figs/gjep-3.jpg" alt="Redesigned Forest Protection and Genetically Engineered Trees page with a protest photo, headline, social links, and a petition button" loading="lazy"></button><figcaption><b>FIG 3</b>Proposed redesign with CTAs and researched copy.</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2>Lessons learned</h2>
+      <div class="prose">
+        <ul>
+          <li><strong>Give stakeholders options, not blank pages.</strong> User-tested versions gave the client clear choices.</li>
+          <li><strong>Keep work moving when input stalls.</strong> When meetings fell through, focused questions and outside sources filled every gap except the accomplishments timeline.</li>
+          <li><strong>Use blocked time well.</strong> While parts of the work waited, I picked up other open problems.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+  <div class="next"><span class="label">Back to start</span><a href="#home">All work →</a></div>
+</article>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Nicki Young · UX Researcher</span>
+    <span>Some figures are redacted or blurred for client privacy.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var views = document.querySelectorAll('[data-view]');
+  var links = document.querySelectorAll('nav.site a');
+  function show(){
+    var id = (location.hash || '#home').slice(1);
+    var found = false;
+    views.forEach(function(v){ var on = v.getAttribute('data-view') === id; v.hidden = !on; if(on) found = true; });
+    if(!found){ id = 'home'; views.forEach(function(v){ v.hidden = v.getAttribute('data-view') !== 'home'; }); }
+    links.forEach(function(a){ if(a.getAttribute('href') === '#' + id) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
+    var titles = {home:'Nicki Young UX Portfolio', ocn:'OCN · Nicki Young', 'food-distro':'Food Distro · Nicki Young', dax:'DAX Dashboard · Nicki Young', gjep:'GJEP · Nicki Young'};
+    document.title = titles[id] || titles.home;
+    window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange', show);
+  show();
+})();
+</script>
+
+<div class="lightbox" id="lightbox" hidden><button type="button" id="lb-close">Close</button><img id="lb-img" alt=""></div>
+<script>
+(function(){
+  var lb=document.getElementById('lightbox'), img=document.getElementById('lb-img');
+  document.addEventListener('click',function(e){
+    var z=e.target.closest('.zoom');
+    if(z){var s=z.querySelector('img'); img.src=s.src; img.alt=s.alt; lb.hidden=false; document.getElementById('lb-close').focus(); return;}
+    if(!lb.hidden && (e.target===lb || e.target.id==='lb-close' || e.target===img)){lb.hidden=true;}
+  });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') lb.hidden=true; });
+})();
+</script>
+
+<script>
+(function(){
+  var b=document.getElementById('copy-email'), t=document.getElementById('email-text');
+  if(!b) return;
+  b.addEventListener('click',function(){
+    var done=function(){ b.textContent='Copied'; setTimeout(function(){b.textContent='Copy';},1600); };
+    var fallback=function(){ var r=document.createRange(); r.selectNodeContents(t); var sel=window.getSelection(); sel.removeAllRanges(); sel.addRange(r); b.textContent='Selected'; setTimeout(function(){b.textContent='Copy';},1600); };
+    try{ navigator.clipboard.writeText(t.textContent).then(done,fallback); }catch(e){ fallback(); }
+  });
+})();
+</script>
+
+</body>
+</html>
